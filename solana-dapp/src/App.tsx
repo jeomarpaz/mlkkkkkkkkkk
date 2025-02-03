@@ -148,7 +148,7 @@ function App() {
       <header className="header">
         <h1>GrowSwap Beta</h1>
           <div className="appi">
-           <img src="../logo (3).png" alt="Logo" className="logo" />
+          <img src="/logooo.png" alt="Logo" className="logo" />
           </div>
        </header>
       

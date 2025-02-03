@@ -3,11 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "start": "vite preview"
+
   },
   "dependencies": {
     "@solana/web3.js": "^1.98.0",
