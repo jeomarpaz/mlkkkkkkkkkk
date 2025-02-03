@@ -1,0 +1,347 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  font-family: 'Inter', sans-serif;
+  background-color: #131313; /* Fondo oscuro */
+  color: #f4f4f9; /* Color claro para los textos */
+  height: auto;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Contenedor principal */
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-color: #212121; /* Fondo oscuro */
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezado */
+.header {
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: #1fc7d4; /* Color inspirado en PancakeSwap */
+  font-weight: 600;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;  /* Ajusta este valor según lo desees */
+  left: 20px; /* Ajusta este valor según lo desees */
+  width: 151px; /* Ajusta el tamaño según lo necesites */
+  height: auto;
+  object-fit: contain;
+}
+
+/* Contenido principal */
+.main {
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Dirección de la billetera */
+.wallet-address {
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  color: #999; /* Color gris para la dirección de billetera */
+  word-break: break-word;
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+.input-group {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  color: #999; /* Color gris para las etiquetas */
+}
+
+.input-group input {
+  width: 100%;
+  max-width: 300px;
+  padding: 12px;
+  border: 1px solid #333; /* Color gris oscuro para el borde */
+  border-radius: 12px;
+  font-size: 1rem;
+  background-color: #333; /* Fondo oscuro para los inputs */
+  color: #f4f4f9;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #1fc7d4; /* Color principal cuando el input está enfocado */
+}
+
+.input-group input[disabled] {
+  background-color: #444; /* Fondo oscuro cuando está deshabilitado */
+  color: #1fc7d4; /* Color brillante para el texto */
+  font-weight: 600;
+  border: 1px solid #666;
+}
+
+/* Botones */
+.connect-button,
+.send-button {
+  background-color: #1fc7d4; /* Color principal para los botones */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.connect-button:hover,
+.send-button:hover {
+  background-color: #17a2ad; /* Color más oscuro al hacer hover */
+}
+
+.send-button:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+}
+
+/* Botón de conexión en la esquina superior derecha */
+.connect-button-container {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.modal {
+  background: #333; /* Fondo oscuro para el modal */
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  width: 400px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.modal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.modal p {
+  margin-bottom: 20px;
+  color: #f4f4f9; /* Color claro en el texto del modal */
+}
+
+.modal-close-button {
+  background-color: #1fc7d4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.modal-close-button:hover {
+  background-color: #17a2ad;
+}
+
+/* Spinner de carga para el botón de Enviar */
+.send-button {
+  position: relative;
+}
+
+.send-button .spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid transparent;
+  border-top-color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+/* Información del balance */
+.wallet-info {
+  font-size: 0.8rem;
+  color: #1fc7d4; /* Color brillante para el balance */
+  margin-bottom: 5px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Contenedor del slider */
+.slider-container {
+  width: 100%;
+  max-width: 300px;
+  margin-top: 10px; /* Ajustado para que esté debajo del monto manual */
+  margin-bottom: 20px; /* Ajustado para el espaciado */
+  text-align: center;
+}
+
+/* Estilos del slider */
+#slider {
+  width: 100%;
+  height: 10px;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #1fc7d4;
+  border-radius: 50px;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+#slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #1fc7d4;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#slider::-webkit-slider-thumb:hover {
+  background-color: #17a2ad;
+}
+
+#slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #1fc7d4;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#slider::-moz-range-thumb:hover {
+  background-color: #17a2ad;
+}
+
+/* Footer */
+.footer {
+  position: absolute;
+  bottom: 20px;
+  font-size: 0.9rem;
+  color: #999; /* Color gris para el pie de página */
+}
+
+/* Estilos para el selector de token */
+select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #333; /* Borde oscuro para el selector */
+  font-size: 1rem;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 300px;
+  background-color: #333; /* Fondo oscuro para el selector */
+  color: #f4f4f9; /* Color claro para el texto */
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+select:hover {
+  background-color: #444; /* Fondo ligeramente más claro al hacer hover */
+  transform: scale(1.05);
+}
+
+select:focus {
+  outline: none;
+  border-color: #1fc7d4; /* Resaltar con el color principal cuando está enfocado */
+}
+
+/* Información de conversión de tokens */
+.token-amount {
+  font-size: 1rem;
+  color: #999; /* Color gris para el texto de la conversión */
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app {
+    padding: 15px;
+  }
+
+  .connect-button-container {
+    top: 15px;
+    right: 15px;
+  }
+
+  .input-group input {
+    max-width: 100%;
+  }
+
+  .connect-button,
+  .send-button {
+    max-width: 100%;
+  }
+
+  .modal {
+    width: 90%;
+  }
+}
