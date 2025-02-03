@@ -102,9 +102,14 @@ function App() {
       const signature = await connection.sendRawTransaction(signedTransaction.serialize());
       setMessage(`🚀 Transacción enviada con éxito! Signature: ${signature}`);
       setShowModal(true);
-    } catch (error) {
-      setMessage(`❌ Error: ${error.message}`);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setMessage(`❌ Error: ${error.message}`);
+      } else {
+        setMessage("❌ Unknown error occurred");
+      }
       setShowModal(true);
+        
     } finally {
       setIsLoading(false);
     }
