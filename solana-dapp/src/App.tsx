@@ -25,7 +25,8 @@ const abbreviateWalletAddress = (address: string | null): string => {
 
 function App() {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
-  const [message, setMessage] = useState<string | null>(null);
+  const [message, setMessage] = useState<React.ReactNode>(null);
+
   const [amount, setAmount] = useState<number>(0.01); // Ahora es un número
   const [balance, setBalance] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -100,7 +101,15 @@ function App() {
 
       const signedTransaction = await fromWallet.signTransaction(transaction);
       const signature = await connection.sendRawTransaction(signedTransaction.serialize());
-      setMessage(`🚀 Transacción enviada con éxito! Signature: ${signature}`);
+      const transactionUrl = `https://solana.fm/tx/${signature}?cluster=devnet-solana`;
+      setMessage(
+      <>
+        🚀 Transacción enviada con éxito!{" "}<br />
+        <a href={transactionUrl} target="_blank" rel="noopener noreferrer">
+          View transaction
+        </a>
+      </>
+      );
       setShowModal(true);
     } catch (error: unknown) {
       if (error instanceof Error) {
